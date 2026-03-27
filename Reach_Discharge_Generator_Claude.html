@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkbox Logic Example</title>
+  <style>
+	html{
+		font-size: 17px;
+	}
+	.list-indent1{
+		margin-left: 30px;
+		display: none;
+	}
+	#box3:checked ~ .list-indent1{
+		display: block;
+	}
+	.list-indent2{
+		margin-left: 30px;
+		display: none;
+	}
+	#box6:checked ~ .list-indent2{
+		display: block;
+	}
+	.list-indent3{
+		margin-left: 30px;
+		display: none;
+	}
+	#box7:checked ~ .list-indent3{
+		display: block;
+	}
+	.list-indent-std{
+		margin-left: 30px;
+		display: none;
+	}
+	.bold-text {
+      font-weight: bold;
+    }
+	.discharge{
+		width: 70%;
+		margin: 10px;
+		font-size: 16px;
+		margin-bottom:5%;
+	}
+	.small-itc{
+		font-style: italic;
+		font-size: 16px;
+	}
+	.Reach{
+	color: #00b259;
+	}
+	div {
+		margin: 0;
+		padding: 0;
+		margin-bottom: 4px;
+	}
+	ul {
+		margin: 0;
+		margin-left: 35px;
+		padding: 0;
+	}
+	ul li {
+	margin-bottom: 5px;
+	}
+	.std-result-sub {
+		margin-left: 30px;
+		margin-top: 4px;
+		margin-bottom: 4px;
+	}
+  </style>
+</head>
+<body>
+	<h2>Discharge Form</h2>
+	<p>Select all applicable options</p>
+  <form>
+    <label>
+      <input type="checkbox" id="box1">
+      Ultrasound Preparation
+    </label><br>
+    <label>
+      <input type="checkbox" id="box2">
+      Medication Instructions
+    </label><br>
+    
+     <input type="checkbox" id="box3">
+		<label for="box3"> Post-Ultrasound Instructions </label>
+		<br>
+ 
+		<div class="list-indent1">
+			<div>
+				<input type="checkbox" id="item1" /> Routine OB care <br>
+				<input type="checkbox" id="item2" /> Inability to detect fetal hear motion <br>
+				<input type="checkbox" id="item3" /> LOU gestational age dating inconsistent with LMP dating <br>
+				<input type="checkbox" id="item4" /> Rule out ectopic pregnancy <br>
+				<input type="checkbox" id="item5" /> Confirm viable pregnancy <br>
+				<input type="checkbox" id="item6" /> Other: <br>
+			</div>
+		</div>
+ 
+    <label>
+      <input type="checkbox" id="box4">
+      STI Testing
+    </label><br>
+    <label>
+      <input type="checkbox" id="box5">
+      Negative Pregnancy
+    </label> <br>
+	
+    <input type="checkbox" id="box6">
+      <label for="box6">Follow-up Referral</label>
+	  <br>
+	  <div class="list-indent2">
+			<div>
+				<input type="checkbox" id="item7" /> DePaul OB Care Center <br>
+				<input type="checkbox" id="item8" /> Dr. Herrmann <br>
+				<input type="checkbox" id="item9" /> Mercy Maternity Welcome Center <br>
+				<input type="checkbox" id="item10" /> St. Mary's OB Care Center <br>
+				<input type="checkbox" id="item11" /> SSM WISH Center  <br>
+				<input type="checkbox" id="item12" /> JFK clinic <br>
+				<input type="text" style="width: 500px; height: 32px;" id="myInput2" placeholder="Add your own custom notes here..." />
+					<button type="button" onclick="addText2()">Add Note</button>
+				
+			</div>
+		</div>
+	<input type="checkbox" id="box7">
+      <label for="box7">Take Home Items</label>
+	  <br>
+	  <div class="list-indent3">
+			<div>
+				<input type="checkbox" id="item13" /> Verification of Pregnancy <br>
+				<input type="checkbox" id="item14" /> Negative Pregnancy Test information <br>
+				<input type="checkbox" id="item15" /> Information packet <br>
+				<input type="checkbox" id="item16" /> Prenatal Vitamins <br>
+				<input type="checkbox" id="item17" /> Community Resource List  <br>
+				<input type="checkbox" id="item18" /> Discharge Summary <br>
+			</div>
+		</div>
+	 
+	<!-- STD Results -->
+	<input type="checkbox" id="boxSTD">
+      <label for="boxSTD"> STD Results </label> <br>
+	  <div class="list-indent-std" id="stdResultsSub">
+		  <div class="std-result-sub">
+			  <strong>Gonorrhea:</strong> &nbsp;
+			  <input type="checkbox" id="gonPos" /> Positive &nbsp;&nbsp;
+			  <input type="checkbox" id="gonNeg" /> Negative
+		  </div>
+		  <div class="std-result-sub">
+			  <strong>Chlamydia:</strong> &nbsp;
+			  <input type="checkbox" id="chlPos" /> Positive &nbsp;&nbsp;
+			  <input type="checkbox" id="chlNeg" /> Negative
+		  </div>
+	  </div>
+ 
+    <input type="checkbox" id="box8">
+      <label> Chlamydia Treatment: Azithromycin </label> <br>
+	<input type="checkbox" id="box9">
+      <label> Gonorrhea Treatment: Ceftriaxone </label> <br>
+ 
+	<input type="checkbox" id="box10">
+      <label> Closing Statement (After LAST Appt with Reach) </label> <br>
+  </form>
+<!-- Custom text input -->
+	<input type="text" style="width: 500px; height: 32px;" id="myInput" placeholder="Add your own custom notes here..." />
+	<button type="button" onclick="addText()">Add Note</button>
+	
+<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->  
+  
+  <br>
+  <h3>Custom output below:</h3>
+  <button type="button" onclick="printDiv('discharge')">Click Here to Print Discharge</button>
+  <br>
+  <span class="small-itc">(Select tray 3 when printing for <span class="Reach">Reach</span> letterhead. On the print menu, select "Print using system dialog", then select "More settings", then on the Paper/Quality tab, select Tray 3 from the Paper Source.
+  <br>Alternatively, Copy, Paste to a Word doc, and Customize as needed.)</span>
+  <hr>
+  <div id="discharge" class="discharge">
+	<h2>Discharge Summary</h2>
+	<p>Thank you for visiting <span class="Reach">Reach Reproductive Health</span> today!</p>
+<!-- Ultrasound Preparation -->
+		<div id="block1" style="display:none;">
+			<h4>Ultrasound Preparation</h4>
+			<p> Your appointment will take approximately one hour. Drink at least two large glasses of water 30 minutes before your appointment and do not empty your bladder to ensure clear imaging. </p>
+			<ul>
+				<li> If you have questions or need to cancel, please call <span class="Reach">Reach</span> at (314) 530-1550.  Seek Immediate Medical Care If You Experience: Abdominal or pelvic pain, Vaginal bleeding, Shortness of breath, Dizziness or lightheadedness </li>
+				<li> If you are having any of these symptoms, <span class="Reach">Reach</span> cannot perform an ultrasound. We do not provide emergency services. Your informational packet includes Ectopic Precautions and Miscarriage Precautions—please review them carefully. </li>
+				<li> If you have an OB-GYN appointment before your scheduled ultrasound, please notify us, as we may not be able to proceed with your scan. </li>
+			</ul>
+		<hr>
+		</div>
+<!-- Medication Instructions -->
+		<div id="block2" style="display:none;">
+			<h4>Medication Instructions</h4>
+			<p> Take all medication to prevent continued or resistant infection Have your sex partner(s) evaluated and/or treated to prevent re-infection. Abstain from sex for at least seven days after you and your partner have been treated. </p>
+			<p> If you experience vomiting within 30 minutes of taking the medication, you will need to call <span class="Reach">Reach</span> to re-evaluate your treatment plan. Please call us at 314-530-1550 to speak with a nurse. </p>
+			<ul>
+				<li> If you do not speak directly to a <span class="Reach">Reach</span> staff member, please leave a message with your first name and contact phone number and we will call you back as soon as possible. </li>
+				<li> If your vomiting symptoms become severe and you are having any other symptoms such as difficulty breathing or a rash please seek emergency </li>
+				<li> If you are currently taking any prescription medication, please notify the prescribing doctor immediately of your positive pregnancy test. </li>
+				<li> Please call your OB physician before using any any over-the-counter medication. Please see referral information in packet for doctor listings if you need an OB physician. </li>
+			</ul>
+		<hr>
+		</div>
+<!-- Post Ultrasound Instructions -->
+		<div id="block3" style="display:none;">
+		<h4>Post-Ultrasound Instructions</h4>
+		<p> Patient was seen at <span class="Reach">Reach</span> for a limited obstetrical ultrasound (LOU) to determine gestational age and viability. This patient has been given miscarriage and ectopic precautions per standard protocol. Upon termination of this clinic visit, our recommendation is that the patient receives follow-up care as indicated below based on preliminary finding: </p> 
+		
+			<div id="item1Content" style="display:none;"> <ul><li>Routine OB care</li></ul> </div>
+			<div id="item2Content" style="display:none;"> <ul><li>Inability to detect fetal hear motion</li></ul> </div>
+			<div id="item3Content" style="display:none;"> <ul><li>LOU gestational age dating inconsistent with LMP dating</li></ul> </div>
+			<div id="item4Content" style="display:none;"> <ul><li>Rule out ectopic pregnancy</li></ul> </div>
+			<div id="item5Content" style="display:none;"> <ul><li>Confirm viable pregnancy</li></ul> </div>
+			<div id="item6Content" style="display:none;"> <ul><li>Other: </li></ul></div>
+		
+		<p> Under the guidance of our Medical Director, Dr. Carolyn Martin, the patient has been directed to seek medical follow-up as promptly as possible. </p>
+ 
+		<hr>
+		</div>
+<!-- STI Testing -->
+		<div id="block4" style="display:none;">
+		<h4>STI Testing</h4>
+		<ul>
+			<li> To protect your health and prevent the potential spread of infection, it is strongly recommended that you remain abstinent from sexual activity until your test results are received and, if necessary, any treatment is completed.</li>
+			<li> Engaging in sexual activity during this time may compromise your health and will negate the results of this test, making them unreliable for diagnosis or treatment planning.</li>
+		</ul>
+		<hr>
+		</div>
+ 
+<!-- STD Results -->
+		<div id="blockSTD" style="display:none;">
+			<h4>STD Results</h4>
+			<div id="stdGonLine" style="display:none;"></div>
+			<div id="stdChlLine" style="display:none;"></div>
+			<div id="stdPosContent" style="display:none;">
+				<ul>
+					<li><span class="bold-text">Any further sexual activity could make these results invalid.</span> Any further sexual activity with a non-exclusive partner with prior sexual exposure could make these results invalid. Exposure to an STI may occur, but depending upon the infection, may not test positive in the body for weeks or even years.</li>
+					<li>Condoms may help reduce the risk of an STI if used consistently and correctly each and every time, however they cannot provide 100% protection from an STI.</li>
+					<li>There are 20 million Americans that are infected with an STI each year. 50% of those are among the ages of 15–24 years old.</li>
+				</ul>
+				<p><span class="bold-text">Avoiding Sexual Contact (oral, anal, vaginal) is the only 100% way to avoid an unintended pregnancy or a sexually transmitted infection (STI).<br>The choice is yours. Choose to know.</span></p>
+			</div>
+		<hr>
+		</div>
+ 
+<!-- Negative Pregnancy Test -->
+		<div id="block5" style="display:none;">
+			<h4>Negative Pregnancy Test</h4>
+			<p>You received a negative pregnancy test result today. This may mean one of two things: </p>
+			<ul>
+				<li>You are not pregnant.</li>
+				<li>You are pregnant, but it is too early to show on a urine pregnancy test or the test is not showing positive for some other reason</li>
+			</ul>
+			<p>There are several possible reasons that you might miss a period, including but not limited to: </p>
+			<ul>
+				<li>Sudden weight gain or loss (especially in extreme dieting, Anorexia and Bulimia)</li>
+				<li>Ovarian cysts Metabolic conditions (alterations in blood sugar and certain hormone levels)</li>
+				<li>Recent illness</li>
+				<li>Stress</li>
+				<li>Thyroid conditions</li>
+				<li>Certain birth control methods/medications</li>
+				<li>An early pregnancy</li>
+				<li>Breastfeeding</li>
+			</ul>
+			<p> The Medical Staff and Director at <span class="Reach">Reach Reproductive Health</span> recommends that you schedule an appointment with a physician to confirm that you are not pregnant and determine the reason for your missed period. We have provided a list of physician referrals for you. If you do not get your period within two weeks and have no symptoms, such as bleeding or pain, you can call us to set up an appointment for another pregnancy test if you wish. </p>
+			<ul>
+				<li> Additionally, if you have not had a pap smear and/or STD testing in the last year, we strongly recommend that you schedule an appointment with a physician for these procedures. </li>
+				<li> The CDC recommends STD testing annually, in addition to every time you have a new sexual partner. </li>
+			</ul>
+		<hr>
+		</div>
+<!-- Follow up Referral -->
+		<div id="block6" style="display:none;">
+		<h4>Follow-Up Referrals</h4>
+		<p>It is recommended that you follow up with the following provider:</p>
+			<div id="item7Content" style="display:none;"> <ul><li><span class="bold-text">DePaul OB Care Center</span>: 12277 De Paul Dr Suite 503, Bridgeton, MO 63044, (314) 344-7586 <br> If you plan to apply for Medicaid, use this link to access information about Medicaid that you should bring to your first appointment: <a href="https://tinyurl.com/medicaid63044" target="_blank">https://tinyurl.com/medicaid63044</a> </li></ul> </div>
+			<div id="item8Content" style="display:none;"> <ul><li><span class="bold-text">Dr. Herrmann</span>: 12277 De Paul Dr. Suite 503S South Medical Building, Saint Louis, MO 63044 (314) 344-7700 </li></ul> </div>
+			<div id="item9Content" style="display:none;"> <ul><li><span class="bold-text">Mercy Maternity Welcome Center</span>: 314-251-6092 615 S New Ballas Rd, St. Louis, MO 63141, located inside the main entrance to Mercy Hospital, on the right side of the main lobby. </li></ul> </div>
+			<div id="item10Content" style="display:none;"> <ul><li><span class="bold-text">St. Mary's OB Care Center</span>: 1027 Bellevue Ave Suite 205, St. Louis, MO 63117 (314) 768-8730 <br> If you plan to apply for Medicaid, use this link to access information about Medicaid that you should bring to your first appointment: <a href="https://tinyurl.com/medicaid63044" target="_blank">https://tinyurl.com/medicaid63044</a> </li></ul> </div>
+			<div id="item11Content" style="display:none;"> <ul><li><span class="bold-text">SSM WISH Center</span> 314-768-8230, 1035 Bellevue Ave # 205, Richmond Heights, MO 63117 </li></ul> </div>
+			<div id="item12Content" style="display:none;"> <ul><li><span class="bold-text">JFK clinic at Mercy Hospital</span>: 615 S New Ballas Rd, St. Louis, MO 63141, (314) 251-6382 </li></ul></div>
+			<div id="customNote2"></div>			
+		<hr>
+		</div>
+<!-- Take Home List -->
+		<div id="block7" style="display:none;">
+		<h4>Take Home Items</h4>
+		<p>Today you received the following items to take home from your <span class="Reach">Reach</span> appointment:</p>
+			<div id="item13Content" style="display:none;"> <ul><li>Verification of Pregnancy </li></ul> </div>
+			<div id="item14Content" style="display:none;"> <ul><li>Negative Pregnancy Test Information </li></ul> </div>
+			<div id="item15Content" style="display:none;"> <ul><li>Information Packet </li></ul> </div>
+			<div id="item16Content" style="display:none;"> <ul><li>Prenatal Vitamins </li></ul> </div>
+			<div id="item17Content" style="display:none;"> <ul><li>Community Resource List </li></ul> </div>
+			<div id="item18Content" style="display:none;"> <ul><li>Discharge Summary </li></ul> </div>	
+		<hr>
+		</div>
+<!-- Chlamydia Treatment -->
+		<div id="block8" style="display:none;">
+			<h4>Chlamydia Treatment</h4>
+			<p> 
+				<span class="bold-text">MEDICATION:</span> AZITHROMYCIN 1 gm <br><br>
+				<span class="bold-text">DIRECTIONS:</span> You were given 4 tablets of AZITHROMYCIN 250 mg each (1 gm). <br><br>
+				<span class="bold-text">ABOUT YOUR MEDICINE:</span><br>
+				AZITHROMYCIN (az-ith-roe-MYE-sin)<br>
+				This medicine is a macrolide antibiotic used to treat bacterial infections.<br><br>
+				<span class="bold-text">PROPER USE OF THIS MEDICINE:</span><br>
+				Follow the directions for using this medicine provided by your doctor. This medicine may be taken on an empty stomach or with food. DO NOT TAKE THIS MEDICINE within 1 hour before or 2 hours after aluminum- or magnesium-containing antacids. STORE THIS MEDICINE at room temperature, away from heat and light. To CLEAR UP YOUR INFECTION COMPLETELY, continue taking this medicine for the full course of treatment even if you feel better in a few days. Do not miss any doses. Taking this medicine at the same time each day will make it easier to remember. IF YOU MISS A DOSE OF THIS MEDICINE, take it as soon as possible. If it is almost time for your next dose, skip the missed dose and go back to your regular dosing schedule. If you miss a dose, do not take 2 doses at once. <br>
+				<br><span class="bold-text">PRECAUTIONS WHILE USING THIS MEDICINE:</span><br>
+				If your symptoms do not improve within a few days or if they become worse, check with your doctor. IF MODERATE TO SEVERE DIARRHEA OCCURS during or after treatment with this medicine, check with your doctor or pharmacist. Do not treat it with non-prescription (over-the-counter) medicines. IF YOU EXPERIENCE difficulty breathing; tightness of your chest; swelling of eyelids, face, or lips; or if you develop a rash or hives, tell your doctor immediately or contact emergency care. Do not take any more doses of this medicine unless your doctor tells you to do so. BEFORE YOU BEGIN TAKING ANY NEW MEDICINE, either prescription or over-the-counter, check with your doctor or pharmacist. FOR WOMEN TAKING BIRTH CONTROL PILLS: this medicine may decrease the effectiveness of your birth control pill. To prevent pregnancy, you may want to use an additional form of birth control. IT IS UNKNOWN IF THIS DRUG IS EXCRETED IN BREAST MILK. IF YOU ARE OR WILL BE BREAST-FEEDING while you are using this medicine, check with your doctor or pharmacist to discuss the risks to your baby.<br>
+				<br><span class="bold-text">POSSIBLE SIDE EFFECTS OF THIS MEDICINE:</span><br>
+				Side effects, that may go away during treatment, include mild diarrhea, nausea, vomiting, or abdominal pain. If they continue or are bothersome, check with your doctor. CHECK WITH YOUR DOCTOR AS SOON AS POSSIBLE if you experience hearing loss or ringing in the ears. If you notice other effects not listed above, contact your doctor, nurse, or pharmacist.<br>
+				<br><span class="bold-text">CONTACT YOUR PRIMARY CARE PHYSICIAN OR THE HOSPITAL EMERGENCY ROOM</span> if you experience seizures or yellowing eyes and skin. If you notice other effects not listed above contact your doctor, nurse, or pharmacist.<br>
+				<ul>
+					<li>Take all medication to prevent continued or resistant infection. </li>
+					<li>Have your sex partner(s) evaluated and/or treated to prevent re-infection. </li>
+					<li>Abstain from sex for at least seven days <span class="bold-text">after</span> you and your partner have been treated.</li>
+					<li>If you experience vomiting within 30 minutes of taking the medication, you will need to call <span class="Reach">Reach</span> to re-evaluate your treatment plan. Please call us at 314-530-1550 to speak with a nurse. If you do not speak directly to a Reach staff member please leave a message with your first name and a contact phone number and we will call you back as soon as possible. </li>
+					<li>If your vomiting symptoms become severe and you are having any other symptoms such as difficulty breathing or a rash please seek emergency care. </li>
+				</ul>
+				Any possible diagnosis discussed is preliminary until confirmed by test results. <br>       
+			</p>
+		<hr>
+		</div>
+<!-- Gonorrhea Treatment -->
+		<div id="block9" style="display:none;">
+			<h4>Gonorrhea Treatment</h4>
+			<p> 
+				<span class="bold-text">MEDICATION:</span> CEFTRIAXONE 500mg IM injection <br><br>
+				<span class="bold-text">DIRECTIONS:</span> You were given CEFTRIAXONE 500mg IM injection. <br><br>
+				<span class="bold-text">ABOUT YOUR MEDICINE:</span><br>
+				CEFTRIAXONE (sef-try-AX-one) <br>
+				This medicine is a cephalosporin antibiotic used to treat bacterial infections.<br><br>
+				<span class="bold-text">PRECAUTIONS WHILE USING THIS MEDICINE:</span><br>
+				A severe reaction includes a severe rash, hives, breathing difficulties, or dizziness. If you have a question about whether you are allergic to this medicine or if a certain medicine is a cephalosporin, contact your doctor or pharmacist. If your symptoms do not improve within a few days or if they become worse, check with your doctor.<br>
+				<br><span class="bold-text">IF MODERATE TO SEVERE DIARRHEA OCCURS</span> during or after treatment with this medicine, check with your doctor or pharmacist. Do not treat it with non-prescription (over-the-counter) medicines.<br>
+				<br><span class="bold-text">IF YOU EXPERIENCE DIFFICULTY</span> breathing or tightness of chest, swelling of eyelids, face, or lips, or develop a rash or hives, seek immediate emergency medical attention.<br>
+				<br><span class="bold-text">POSSIBLE SIDE EFFECTS OF THIS MEDICINE:</span><br>
+				Side effects that may be experienced and then go away with this treatment, include nausea, vomiting, or mild diarrhea. If they continue or are bothersome, check with your doctor. <span class="bold-text">CHECK WITH YOUR DOCTOR AS SOON AS POSSIBLE</span> if you experience skin rash or itching; pain, swelling, or redness at the injection site; severe diarrhea; vaginal irritation or discharge.<br>
+				<br><span class="bold-text">CONTACT YOUR PRIMARY CARE PHYSICIAN OR THE HOSPITAL EMERGENCY ROOM</span> if you experience seizures or yellowing eyes and skin. If you notice other effects not listed above contact your doctor, nurse, or pharmacist.<br>
+				<ul>
+					<li>Take all medication to prevent continued or resistant infection. </li>
+					<li>Have your sex partner(s) evaluated and/or treated to prevent re-infection. </li>
+					<li>Abstain from sex for at least seven days <span class="bold-text">after</span> you and your partner have been treated.</li>
+					<li>If you experience vomiting within 30 minutes of taking the medication, you will need to call <span class="Reach">Reach</span> to re-evaluate your treatment plan. Please call us at 314-530-1550 to speak with a nurse. If you do not speak directly to a Reach staff member please leave a message with your first name and a contact phone number and we will call you back as soon as possible. </li>
+					<li>If your vomiting symptoms become severe and you are having any other symptoms such as difficulty breathing or a rash please seek emergency care. </li>
+				</ul>
+				Any possible diagnosis discussed is preliminary until confirmed by test results. <br>       
+			</p>
+		<hr>
+		</div>
+		<div id="customNote"></div>
+	<p>If you have any pain, cramping, bleeding or dizziness, please seek emergency care or go to the Mercy Maternity Welcome Center at 615 S New Ballas Rd, St. Louis, MO 63141, located inside the main entrance to Mercy Hospital, on the right side of the main lobby.  They can be contacted at: 314-251-6092.</p>
+		<div id="boxToHide">
+			<p>Thank you again for the opportunity to serve you.<br>
+				Sincerely, <br>
+				<span class="Reach">Reach Reproductive Health</span>
+			</p>
+		</div>
+		
+<!-- Closing Statement -->	
+	<div id="block10" style="display:none;">
+		<p>
+			Thank you for allowing <span class="Reach">Reach Reproductive Health</span> to serve you during this time. We have been pleased to provide services to confirm your pregnancy.
+			<br><br>
+			Please note that <span class="Reach">Reach Reproductive Health</span> and our clinical team—including the registered nurse you were seen by today—are not providers of prenatal or ongoing medical care. Our services are limited to the initial confirmation of pregnancy and related health assessments. 
+			<br><br>
+			You will need to arrange follow-up care with a physician or qualified prenatal care provider. If you would like assistance finding a provider, we would be happy to offer recommendations. 
+			<br><br>
+			Thank you again for the opportunity to serve you. <br>
+			Sincerely, <br>
+			<span class="Reach">Reach Reproductive Health</span>
+		</p>
+	</div>
+ 
+</div>
+<br><br><br><br><br>
+ 
+<script>
+// Main checkboxes toggle output blocks
+['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'box7', 'box8', 'box9', 'box10'].forEach(function(id) {
+  document.getElementById(id).addEventListener('change', function() {
+    var blockId = 'block' + id.replace('box', '');
+    document.getElementById(blockId).style.display = this.checked ? 'block' : 'none';
+  });
+});
+ 
+// Sub-item checkboxes toggle output content
+['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7', 'item8', 'item9', 'item10', 'item11', 'item12', 'item13', 'item14', 'item15', 'item16', 'item17', 'item18' ].forEach(function(id) {
+  document.getElementById(id).addEventListener('change', function() {
+    document.getElementById(id + 'Content').style.display = this.checked ? 'block' : 'none';
+  });
+});
+ 
+// Closing statement hides/shows default sign-off
+document.getElementById('box10').addEventListener('change', function() {
+  document.getElementById('boxToHide').style.display = this.checked ? 'none' : 'block';
+});
+ 
+// STD Results — single consolidated section
+function updateSTDOutput() {
+  var gonPos = document.getElementById('gonPos').checked;
+  var gonNeg = document.getElementById('gonNeg').checked;
+  var chlPos = document.getElementById('chlPos').checked;
+  var chlNeg = document.getElementById('chlNeg').checked;
+ 
+  var anySelected = gonPos || gonNeg || chlPos || chlNeg;
+  var anyPositive = gonPos || chlPos;
+ 
+  document.getElementById('blockSTD').style.display = anySelected ? 'block' : 'none';
+ 
+  var gonLine = document.getElementById('stdGonLine');
+  if (gonPos || gonNeg) {
+    gonLine.style.display = 'block';
+    gonLine.innerHTML = '<p><span class="bold-text">Gonorrhea:</span> ' + (gonPos ? 'Positive' : 'Negative') + '</p>';
+  } else {
+    gonLine.style.display = 'none';
+    gonLine.innerHTML = '';
+  }
+ 
+  var chlLine = document.getElementById('stdChlLine');
+  if (chlPos || chlNeg) {
+    chlLine.style.display = 'block';
+    chlLine.innerHTML = '<p><span class="bold-text">Chlamydia:</span> ' + (chlPos ? 'Positive' : 'Negative') + '</p>';
+  } else {
+    chlLine.style.display = 'none';
+    chlLine.innerHTML = '';
+  }
+ 
+  document.getElementById('stdPosContent').style.display = anyPositive ? 'block' : 'none';
+}
+ 
+document.getElementById('boxSTD').addEventListener('change', function() {
+  document.getElementById('stdResultsSub').style.display = this.checked ? 'block' : 'none';
+  if (!this.checked) {
+    ['gonPos','gonNeg','chlPos','chlNeg'].forEach(function(id) {
+      document.getElementById(id).checked = false;
+    });
+    updateSTDOutput();
+  }
+});
+ 
+// Mutually exclusive Pos/Neg per test
+document.getElementById('gonPos').addEventListener('change', function() {
+  if (this.checked) document.getElementById('gonNeg').checked = false;
+  updateSTDOutput();
+});
+document.getElementById('gonNeg').addEventListener('change', function() {
+  if (this.checked) document.getElementById('gonPos').checked = false;
+  updateSTDOutput();
+});
+document.getElementById('chlPos').addEventListener('change', function() {
+  if (this.checked) document.getElementById('chlNeg').checked = false;
+  updateSTDOutput();
+});
+document.getElementById('chlNeg').addEventListener('change', function() {
+  if (this.checked) document.getElementById('chlPos').checked = false;
+  updateSTDOutput();
+});
+ 
+ 
+// Custom note functions
+function addText() {
+  var input = document.getElementById("myInput").value;
+  if (!input.trim()) return;
+  var div = document.getElementById("customNote");
+  var newParagraph = document.createElement("p");
+  newParagraph.textContent = input;
+  div.appendChild(newParagraph);
+  document.getElementById("myInput").value = "";
+}
+ 
+function addText2() {
+  var input = document.getElementById("myInput2").value;
+  if (!input.trim()) return;
+  var div = document.getElementById("customNote2");
+  var newParagraph = document.createElement("p");
+  newParagraph.textContent = input;
+  div.appendChild(newParagraph);
+  document.getElementById("myInput2").value = "";
+}
+ 
+// Print function
+function printDiv(divId) {
+  var printContents = document.getElementById(divId).innerHTML;
+  var newWindow = window.open();
+  var styles = document.querySelector('style').innerHTML;
+  newWindow.document.write('<style>' + styles + '</style>' + printContents);
+  newWindow.document.close();
+  newWindow.print();
+}
+</script>
+</body>
+</html>
